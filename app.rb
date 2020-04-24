@@ -8,12 +8,15 @@ get '/:url' do
 end
 
 get '/' do
-    "Enter your URL using cURL POST"
+    erb :bear
 end
 
 post '/' do
-    url = generate_short_url(params[:url])
-    "Your shortened URL is: #{url} \n"
+    @url = params[:url]
+    p @url
+    @url = generate_short_url(params[:url])
+    erb :output
+    
 end
 
 def generate_short_url(original)
